@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace FileAngular
 {
@@ -13,6 +15,13 @@ namespace FileAngular
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            RouteTable.Routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "gsp.ui.Controllers" }
+                );
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
